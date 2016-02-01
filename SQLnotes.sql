@@ -20,3 +20,5 @@ CREATE TABLE foobar (
 INNER JOIN
 
 SELECT * FROM a LEFT OUTER JOIN b ON a.foo = b.bar;
+
+// Continued

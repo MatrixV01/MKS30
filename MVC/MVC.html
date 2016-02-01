@@ -1,0 +1,56 @@
+<html>
+<head>
+  <title>Concrete MVC Example</title>
+</head>
+<body>
+
+  <form class="new-comment">
+    <label>Author:</label> <input type="text" name="author"> <br>
+    <label>Content:</label> <input type="text" name="content">
+    <button type="submit">Create Comment</button>
+  </form>
+
+  <div class="comments"></div>
+
+  <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+  <script>
+  // Model data
+  var comments = [
+    { author: 'Ailec', content: 'ih' },
+    { author: 'anon', content: 'o hi' }
+  ]
+
+  // Model code
+  function createComment (author, content) {
+    comments.push({ author: author, content: content })
+    // $('.comments').append(...) // BAD
+    // renderComments() // BAD
+    // renderPage() // BAD
+    // renderCommentList() // BAD
+    // renderUserProfile() // BAD
+  }
+
+  // View code
+  function renderComments () {
+    var commentDivs = comments.map(function(c){
+      return $('<div class="comment">').text(c.author + ' says: ' + c.content)
+    })
+    $('.comments').empty().append(commentDivs)
+  }
+
+  // Controller code
+
+  // If comments was a Backbone.Collection:
+  // comments.on('add remove', renderComments)
+
+  $('.new-comment').on('submit', function (e) {
+    e.preventDefault()
+    var form = e.currentTarget
+    createComment(form.author.value, form.content.value)
+    renderComments()
+  })
+
+  renderComments()
+  </script>
+</body>
+</html>

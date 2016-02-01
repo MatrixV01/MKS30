@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Event Delegation</title>
+  </head>
+  <body>
+
+    <ul class="users">
+      <li>Alice</li>
+      <li>Bob</li>
+    </ul>
+
+    <button class="add-user">Add User</button>
+
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+    <script>
+      // Broken version
+      $('.users li').on('click', function (e) {
+        $(e.currentTarget).css('color', 'blue')
+      })
+
+      $('.add-user').on('click', function (e) {
+        $('.users').append(
+          $('<li>').text( "User #" + Math.random() )
+        )
+      })
+
+      // Event delegation (attach to parent)
+      $('.users').on('click', 'li', function (e) {
+        $(e.currentTarget).css('color', 'blue')
+      })
+
+      $('.add-user').on('click', function (e) {
+        $('.users').append(
+          $('<li>').text( "User #" + Math.random() )
+        )
+      })
+    </script>
+
+  </body>
+</html>
