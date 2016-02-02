@@ -29,8 +29,8 @@ app.use( cookieParser() )
 var sessionStorage = {}
 
 app.post('/sign-in', function (request, response) {
-  var username = request.params.username;
-  var password = request.params.password;
+  var username = request.body.username;
+  var password = request.body.password;
 
   User.findByUsername(username)
     .then(function (user) {
